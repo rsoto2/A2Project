@@ -22,7 +22,7 @@ public class Game extends Form {
 	private GameWorld gw;
 	private MapView mv;
 	private PointsView pv;
-	private GameButton quitbutton, asteroid, ssbutton, shipbutton, ispeedbutton, dsbutton, leftbutton, rightbutton, missilebutton, hyperbutton, refuelbutton;
+	private GameButton npsbutton, newbutton, quitbutton, asteroid, ssbutton, shipbutton, ispeedbutton, dsbutton, leftbutton, rightbutton, missilebutton, hyperbutton, refuelbutton;
 	
 	private AddAsteroidCommand addastro;
 	private AddStationCommand addstation;
@@ -35,7 +35,11 @@ public class Game extends Form {
 	private HyperSpaceCommand h;
 	private ResupplyCommand r;
 	private QuitGameCommand q;
-	
+	private NewGameCommand n;
+	private AboutGameCommand about;
+	private SaveGameCommand save;
+	private UndoGameCommand undo;
+	private AddNPSCommand nps;
 	
 	
 	private Container leftButtons;
@@ -64,6 +68,8 @@ public class Game extends Form {
 		leftButtons.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.BLACK));
 		//leftButtons.getAllStyles().setBackgroundGradientStartColor(ColorUtil.BLACK);
 		leftButtons.getAllStyles().setBgColor(ColorUtil.GREEN);
+		//leftButtons.setFocus(false);
+		
 		
 
 		this.add(BorderLayout.WEST, leftButtons);
@@ -78,6 +84,17 @@ public class Game extends Form {
 		asteroid.setCommand(addastro);
 		this.addKeyListener('a', addastro);
 		leftButtons.addComponent(asteroid);
+		asteroid.setFocusable(false);
+		
+		npsbutton = new GameButton("NPS");
+		npsbutton.getAllStyles().setBgTransparency(255);
+		npsbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
+		npsbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+		nps = new AddNPSCommand(gw);
+		npsbutton.setCommand(nps);
+		this.addKeyListener('y', nps);
+		leftButtons.addComponent(npsbutton);
+		npsbutton.setFocusable(false);
 		
 		ssbutton = new GameButton("Station");
 		ssbutton.getAllStyles().setBgTransparency(255);
@@ -87,6 +104,7 @@ public class Game extends Form {
 		ssbutton.setCommand(addstation);
 		this.addKeyListener('b', addstation);
 		leftButtons.addComponent(ssbutton);
+		ssbutton.setFocusable(false);
 		
 		shipbutton= new GameButton("Ship");
 		shipbutton.getAllStyles().setBgTransparency(255);
@@ -96,42 +114,49 @@ public class Game extends Form {
 		shipbutton.setCommand(addShip);
 		this.addKeyListener('s', addShip);
 		leftButtons.addComponent(shipbutton);
+		shipbutton.setFocusable(false);
 		
-		ispeedbutton = new GameButton("Increase Speed");
-		ispeedbutton.getAllStyles().setBgTransparency(255);
-		ispeedbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-		ispeedbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+//		ispeedbutton = new GameButton("Increase Speed");
+//		ispeedbutton.getAllStyles().setBgTransparency(255);
+//		ispeedbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
+//		ispeedbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
 		iSpeed = new IncreaseSpeedCommand(gw);
-		ispeedbutton.setCommand(iSpeed);
-		this.addKeyListener('i', iSpeed);
-		leftButtons.addComponent(ispeedbutton);
+//		ispeedbutton.setCommand(iSpeed);
+		this.addKeyListener(-91, iSpeed);
+//		leftButtons.addComponent(ispeedbutton);
+//		ispeedbutton.setFocusable(false);
 		
-		dsbutton = new GameButton("Decrease Speed");
-		dsbutton.getAllStyles().setBgTransparency(255);
-		dsbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-		dsbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+//		dsbutton = new GameButton("Decrease Speed");
+//		dsbutton.getAllStyles().setBgTransparency(255);
+//		dsbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
+//		dsbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
 		dSpeed= new DecreaseSpeedCommand(gw);
-		dsbutton.setCommand(dSpeed);
-		this.addKeyListener('d', dSpeed);
-		leftButtons.addComponent(dsbutton);
+//		dsbutton.setCommand(dSpeed);
+		this.addKeyListener(-92, dSpeed);
+//		leftButtons.addComponent(dsbutton);
+//		dsbutton.setFocusable(false);
 		
-		leftbutton = new GameButton("TurnLeft");
-		leftbutton.getAllStyles().setBgTransparency(255);
-		leftbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-		leftbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+//		leftbutton = new GameButton("TurnLeft");
+//		leftbutton.getAllStyles().setBgTransparency(255);
+//		leftbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
+//		leftbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
 		tl = new TurnLeftCommand(gw);
-		leftbutton.setCommand(tl);
-		this.addKeyListener('l', tl);
-		leftButtons.addComponent(leftbutton);
+		//leftbutton.setCommand(tl);
+		this.addKeyListener(-93, tl);
+		//addKeyListener(-93, tl);
+		//leftButtons.addComponent(leftbutton);
+		//leftbutton.setFocusable(false);
 		
-		rightbutton = new GameButton("Turn Right");
-		rightbutton.getAllStyles().setBgTransparency(255);
-		rightbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-		rightbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+//		rightbutton = new GameButton("Turn Right");
+//		rightbutton.getAllStyles().setBgTransparency(255);
+//		rightbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
+//		rightbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
 		rl= new TurnRightCommand(gw);
-		rightbutton.setCommand(rl);
-		this.addKeyListener('r', rl);
-		leftButtons.addComponent(rightbutton);
+	//	rightbutton.setCommand(rl);
+		this.addKeyListener(-94, rl);
+//		leftButtons.addComponent(rightbutton);
+//		rightbutton.setFocusable(false);
+
 		
 		missilebutton = new GameButton("Fire Missile");
 		missilebutton.getAllStyles().setBgTransparency(255);
@@ -139,8 +164,9 @@ public class Game extends Form {
 		missilebutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
 		m = new FireMissileCommand(gw);
 		missilebutton.setCommand(m);
-		this.addKeyListener('f', m);
+		this.addKeyListener(-90, m);
 		leftButtons.addComponent(missilebutton);
+		missilebutton.setFocusable(false);
 		
 		hyperbutton = new GameButton("HyperSpace");
 		hyperbutton.getAllStyles().setBgTransparency(255);
@@ -150,27 +176,32 @@ public class Game extends Form {
 		hyperbutton.setCommand(h);
 		this.addKeyListener('f', h);
 		leftButtons.addComponent(hyperbutton);
+		hyperbutton.setFocusable(false);
 		
-		refuelbutton = new GameButton("ReSupply");
-		refuelbutton.getAllStyles().setBgTransparency(255);
-		refuelbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-		refuelbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+//		refuelbutton = new GameButton("ReSupply");
+//		refuelbutton.getAllStyles().setBgTransparency(255);
+//		refuelbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
+//		refuelbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
 		r = new ResupplyCommand(gw);
-		refuelbutton.setCommand(r);
+//		refuelbutton.setCommand(r);
 		this.addKeyListener('n', r);
-		leftButtons.addComponent(refuelbutton);
+//		leftButtons.addComponent(refuelbutton);
+//		refuelbutton.setFocusable(false);
 		
-		ssbutton = new GameButton("Pause");
-		addstation = new AddStationCommand(gw);
-		ssbutton.setCommand(addstation);
-		this.addKeyListener('b', addstation);
-		leftButtons.addComponent(ssbutton);
+//		ssbutton = new GameButton("Pause");
+//		addstation = new AddStationCommand(gw);
+//		ssbutton.setCommand(addstation);
+//		this.addKeyListener('b', addstation);
+//		leftButtons.addComponent(ssbutton);
+//		ssbutton.setFocusable(false);
+//		
+//		shipbutton= new GameButton("Exit");
+//		addShip = new AddShipCommand(gw);
+//		shipbutton.setCommand(addShip);
+//		this.addKeyListener('s', addShip);
+//		leftButtons.addComponent(shipbutton);
+//		shipbutton.setFocusable(false);
 		
-		shipbutton= new GameButton("Exit");
-		addShip = new AddShipCommand(gw);
-		shipbutton.setCommand(addShip);
-		this.addKeyListener('s', addShip);
-		leftButtons.addComponent(shipbutton);
 		
 		
 		
@@ -181,7 +212,7 @@ public class Game extends Form {
 		
 		//cContainer = new Container();
 		
-		
+		//toolbar menu
 		Toolbar sideMenu = new Toolbar();
 		quitbutton = new GameButton("Quit");
 		sideMenu.setUIID("ToolBar");
@@ -199,6 +230,22 @@ public class Game extends Form {
 		this.addKeyListener('q', q);
 		sideMenu.addCommandToLeftSideMenu(q);
 		//sideMenu.addCommandToLeftSideMenu(newGame);
+		
+		about = new AboutGameCommand(gw);
+		//this.addKeyListener(-1, about);
+		sideMenu.addCommandToLeftSideMenu(about);
+		
+		n = new NewGameCommand(gw);
+		//this.addKeyListener(-1, n);
+		sideMenu.addCommandToLeftSideMenu(n);
+		
+		save = new SaveGameCommand(gw);
+		//this.addKeyListener(-1,  save);
+		sideMenu.addCommandToLeftSideMenu(save);
+		
+		undo = new UndoGameCommand(gw);
+		//this.addKeyListener(-1, undo);
+		sideMenu.addCommandToLeftSideMenu(undo);
 		
 //		gw.init();
 //		play();

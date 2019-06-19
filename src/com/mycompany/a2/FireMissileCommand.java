@@ -15,7 +15,13 @@ private GameWorld gw;
 	
 	public void actionPerformed(ActionEvent e)
 	{
+		if(e.getKeyEvent() != -1) {
+
 		gw.fireMissile();
+		}
 	}
 
 }
+
+
+//setFocusable();

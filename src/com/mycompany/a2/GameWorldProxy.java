@@ -19,6 +19,8 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	
 	
 	
+	
+	
 	@Override
 	public int getPlayerScore() {
 		// TODO Auto-generated method stub
@@ -45,6 +47,19 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	public int getElapseTime() {
 		// TODO Auto-generated method stub
 		return gw.getElapseTime();
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public void addAsteroid() {
+		// TODO Auto-generated method stub
+		gw.addNewAsteroid();
 	}
 
 

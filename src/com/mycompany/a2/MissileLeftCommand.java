@@ -3,21 +3,19 @@ package com.mycompany.a2;
 import com.codename1.ui.Command;
 import com.codename1.ui.events.ActionEvent;
 
-public class QuitGameCommand extends Command {
-	private GameWorld gw;
+public class MissileLeftCommand extends Command {
+
+private GameWorld gw;
 	
-	public QuitGameCommand(GameWorld gw)
+	public MissileLeftCommand(GameWorld gw)
 	{
-		super("Quit Game");
+		super("Launcher Left");
 		this.gw = gw;
 	}
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getKeyEvent() != -1) {
-		gw.quit();
-		}
+		gw.turnPSMLLeft();
 	}
 	
 }
-

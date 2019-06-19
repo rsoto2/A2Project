@@ -187,7 +187,7 @@ public class GameWorld extends Observable  {
 	}
 	
 	
-	public void turnPSML() throws IllegalArgumentException {
+	public void turnPSMLRight() throws IllegalArgumentException {
 		for(int i = 0; i < store.size(); i++) 
 		{
 		
@@ -202,6 +202,22 @@ public class GameWorld extends Observable  {
 		}
 	}
 	
+	
+	public void turnPSMLLeft() throws IllegalArgumentException {
+		for(int i = 0; i < store.size(); i++) 
+		{
+		
+			PlayerShip ps = (PlayerShip) store.elementAt(i);
+			//if(ps.getMissileLauncher().getDirection() == 0) {
+				//ps.getMissileLauncher().setDirection(-90);
+				ps.changeLauncherDirection(-1);
+				System.out.println("Turning direction of missile launcher");
+				//}
+				//else 
+					//System.out.println("Can't turn missile");
+		}
+	
+	}
 	
 	
 //	public void turnShipLeft() {
@@ -290,8 +306,15 @@ public class GameWorld extends Observable  {
 	
 	public void reSupply() {
 		if(s instanceof PlayerShip) {
+			if(s.getMissileCount() == 10)
+			{
+				System.out.println("Missiles already max");
+			}
+			else {
+				
  			s.setMissileCount(10);
 			System.out.println("Missiles Reloaded");
+			}
 			
 		}
 		else {

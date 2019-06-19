@@ -8,7 +8,7 @@ public interface IGameWorld {
 	
 	int getElapseTime();
 	
-	
+	void addAsteroid();
 //
 //	public void getElapseTime(int et);
 //	
