@@ -22,7 +22,7 @@ public class Game extends Form {
 	private GameWorld gw;
 	private MapView mv;
 	private PointsView pv;
-	private GameButton npsbutton, newbutton, quitbutton, asteroid, ssbutton, shipbutton, ispeedbutton, dsbutton, leftbutton, rightbutton, missilebutton, hyperbutton, refuelbutton;
+	private GameButton npsbutton, quitbutton, asteroid, ssbutton, shipbutton, missilebutton, hyperbutton;
 	
 	private AddAsteroidCommand addastro;
 	private AddStationCommand addstation;
@@ -40,6 +40,18 @@ public class Game extends Form {
 	private SaveGameCommand save;
 	private UndoGameCommand undo;
 	private AddNPSCommand nps;
+	private MissileLeftCommand missileL;
+	private MissileRightCommand missileR;
+	private NPSMissileCommand NPSmissile;
+	private PSMissileHitsAsteroidCommand psAst;
+	private PSMissileHitsNPSCommand psNPS;
+	private NPSMissileHitsPSCommand npsPS;
+	private PSHitsAsteroidCommand psHitAst;
+	private PSHitsNPSCommand psHitNps;
+	private AsteroidHitAsteroidCommand aa;
+	private AsteroidHitsNPSCommand astNPS;
+	private TickCommand tick;
+	
 	
 	
 	private Container leftButtons;
@@ -50,7 +62,7 @@ public class Game extends Form {
 	
 	public Game()  {
 		gw = new GameWorld();
-		mv = new MapView();
+		mv = new MapView(gw);
 		pv = new PointsView();
 		gw.addObserver(mv);
 		gw.addObserver(pv);
@@ -116,46 +128,22 @@ public class Game extends Form {
 		leftButtons.addComponent(shipbutton);
 		shipbutton.setFocusable(false);
 		
-//		ispeedbutton = new GameButton("Increase Speed");
-//		ispeedbutton.getAllStyles().setBgTransparency(255);
-//		ispeedbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-//		ispeedbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+		//increase speed command
 		iSpeed = new IncreaseSpeedCommand(gw);
-//		ispeedbutton.setCommand(iSpeed);
 		this.addKeyListener(-91, iSpeed);
-//		leftButtons.addComponent(ispeedbutton);
-//		ispeedbutton.setFocusable(false);
-		
-//		dsbutton = new GameButton("Decrease Speed");
-//		dsbutton.getAllStyles().setBgTransparency(255);
-//		dsbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-//		dsbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+
+		//decrease speed command
 		dSpeed= new DecreaseSpeedCommand(gw);
-//		dsbutton.setCommand(dSpeed);
 		this.addKeyListener(-92, dSpeed);
-//		leftButtons.addComponent(dsbutton);
-//		dsbutton.setFocusable(false);
-		
-//		leftbutton = new GameButton("TurnLeft");
-//		leftbutton.getAllStyles().setBgTransparency(255);
-//		leftbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-//		leftbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+
+		//turn direction of ship command; LEFT
 		tl = new TurnLeftCommand(gw);
-		//leftbutton.setCommand(tl);
 		this.addKeyListener(-93, tl);
-		//addKeyListener(-93, tl);
-		//leftButtons.addComponent(leftbutton);
-		//leftbutton.setFocusable(false);
+
 		
-//		rightbutton = new GameButton("Turn Right");
-//		rightbutton.getAllStyles().setBgTransparency(255);
-//		rightbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-//		rightbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+		//turn direction of ship command; RIGHT
 		rl= new TurnRightCommand(gw);
-	//	rightbutton.setCommand(rl);
 		this.addKeyListener(-94, rl);
-//		leftButtons.addComponent(rightbutton);
-//		rightbutton.setFocusable(false);
 
 		
 		missilebutton = new GameButton("Fire Missile");
@@ -178,30 +166,48 @@ public class Game extends Form {
 		leftButtons.addComponent(hyperbutton);
 		hyperbutton.setFocusable(false);
 		
-//		refuelbutton = new GameButton("ReSupply");
-//		refuelbutton.getAllStyles().setBgTransparency(255);
-//		refuelbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-//		refuelbutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+		//resupply missiles
 		r = new ResupplyCommand(gw);
-//		refuelbutton.setCommand(r);
 		this.addKeyListener('n', r);
-//		leftButtons.addComponent(refuelbutton);
-//		refuelbutton.setFocusable(false);
+		//turn launcher left
+		missileL = new MissileLeftCommand(gw);
+		this.addKeyListener('<', missileL);
 		
-//		ssbutton = new GameButton("Pause");
-//		addstation = new AddStationCommand(gw);
-//		ssbutton.setCommand(addstation);
-//		this.addKeyListener('b', addstation);
-//		leftButtons.addComponent(ssbutton);
-//		ssbutton.setFocusable(false);
-//		
-//		shipbutton= new GameButton("Exit");
-//		addShip = new AddShipCommand(gw);
-//		shipbutton.setCommand(addShip);
-//		this.addKeyListener('s', addShip);
-//		leftButtons.addComponent(shipbutton);
-//		shipbutton.setFocusable(false);
+		//turn launcher right
+		missileR = new MissileRightCommand(gw);
+		this.addKeyListener('>', missileR);
 		
+		//nps missile
+		NPSmissile = new NPSMissileCommand(gw);
+		this.addKeyListener('L', NPSmissile);
+		//ps missile kills asteroid
+		psAst = new PSMissileHitsAsteroidCommand(gw);
+		this.addKeyListener('k', psAst);
+		//ps missile kills nps
+		psNPS = new PSMissileHitsNPSCommand(gw);
+		this.addKeyListener('e', psNPS);
+		//nps missile hits ps
+		npsPS = new NPSMissileHitsPSCommand(gw);
+		this.addKeyListener('E', npsPS);
+		//PS hits asteroid
+		psHitAst = new PSHitsAsteroidCommand(gw);
+		this.addKeyListener('c', psHitAst);
+		//ps hits NPS
+		psHitNps = new PSHitsNPSCommand(gw);
+		this.addKeyListener('h', psHitNps);
+		//asteroid hits asteroid 
+		aa = new AsteroidHitAsteroidCommand(gw);
+		this.addKeyListener('x', aa);
+		//asteroid hits NPS
+		astNPS = new AsteroidHitsNPSCommand(gw);
+		this.addKeyListener('I', astNPS);
+		//tick
+		tick = new TickCommand(gw);
+		this.addKeyListener('t', tick);
+		
+		
+		q = new QuitGameCommand(gw);
+		this.addKeyListener('q', q);
 		
 		
 		

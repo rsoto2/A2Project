@@ -7,7 +7,8 @@ import java.util.Vector;
 
 
 
-public class GameWorld extends Observable  {
+
+public class GameWorld extends Observable  implements IGameWorld{
 	
 	
 	Random rand = new Random();
@@ -63,6 +64,8 @@ public class GameWorld extends Observable  {
 		NonPlayerShip y = new NonPlayerShip();
 		store.add(y);
 		System.out.println("A new NPS will be created");
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
 	}
 	
 	public void init() {
@@ -83,6 +86,8 @@ public class GameWorld extends Observable  {
 				Missile ms1 = new Missile(ps.getColor(), ps.getLocationX(), ps.getLocationY(), ps.getSpeed(), ps.getDirection(), ps);
 				store.add(ms1);
 				System.out.println("PlayerShip has fired a Missile!");
+				this.setChanged();
+				this.notifyObservers(new GameWorldProxy(this));
 				return;
 				}else {
 					System.out.println("PlayerShip has no more Missiles!");
@@ -90,6 +95,7 @@ public class GameWorld extends Observable  {
 			}
 
 		}
+		//this.notifyObservers(new GameWorldProxy(this));
 	}
 	
 	
@@ -102,6 +108,8 @@ public class GameWorld extends Observable  {
 				Missile ms1 = new Missile(nps.getColor(), nps.getLocationX(), nps.getLocationY(),  nps.getSpeed(), nps.getDirection(), nps);
 				store.add(ms1);
 				System.out.println("NonPlayerShip has fired a Missile!");
+				this.setChanged();
+				this.notifyObservers(new GameWorldProxy(this));
 				return;
 			
 			}else {
@@ -149,6 +157,8 @@ public class GameWorld extends Observable  {
 			}
 		}
 		System.out.println("Tick");
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
 		
 		//clock++;
 	}
@@ -181,6 +191,8 @@ public class GameWorld extends Observable  {
 		//ps.setLocation(512, 384);
 		ps.reset();
 		System.out.println("Ship jumped through hyperspace");
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
 			}
 		 	}
 		
@@ -190,30 +202,38 @@ public class GameWorld extends Observable  {
 	public void turnPSMLRight() throws IllegalArgumentException {
 		for(int i = 0; i < store.size(); i++) 
 		{
-		
+			if(store.get(i) instanceof PlayerShip) {
 			PlayerShip ps = (PlayerShip) store.elementAt(i);
 			//if(ps.getMissileLauncher().getDirection() == 0) {
 				//ps.getMissileLauncher().setDirection(-90);
 				ps.changeLauncherDirection(1);
 				System.out.println("Turning direction of missile launcher");
+				this.setChanged();
+				this.notifyObservers(new GameWorldProxy(this));
 				//}
 				//else 
+			}
 					//System.out.println("Can't turn missile");
 		}
+		
+	
 	}
 	
 	
 	public void turnPSMLLeft() throws IllegalArgumentException {
 		for(int i = 0; i < store.size(); i++) 
 		{
-		
+			if(store.get(i) instanceof PlayerShip) {
 			PlayerShip ps = (PlayerShip) store.elementAt(i);
 			//if(ps.getMissileLauncher().getDirection() == 0) {
 				//ps.getMissileLauncher().setDirection(-90);
 				ps.changeLauncherDirection(-1);
 				System.out.println("Turning direction of missile launcher");
+				this.setChanged();
+				this.notifyObservers(new GameWorldProxy(this));
 				//}
-				//else 
+				//else
+			}
 					//System.out.println("Can't turn missile");
 		}
 	
@@ -230,12 +250,12 @@ public class GameWorld extends Observable  {
 //		}
 //	}
 	
-	public PlayerShip findPlayer()
-	{
-		int i = -1;
-		PlayerShip temp = null;
-		return temp;
-	}
+//	public PlayerShip findPlayer()
+//	{
+//		int i = -1;
+//		PlayerShip temp = null;
+//		return temp;
+//	}
 	
 	public void turnShipLeft() {
 		for(int i = 0; i < store.size(); i++) 
@@ -246,6 +266,8 @@ public class GameWorld extends Observable  {
 				//ps.setDirection(ps.getDirection() - 1);
 			ps.Steer(1);
 		System.out.println("Turning direction of ship");
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
 			}
 			}
 	}
@@ -261,6 +283,8 @@ public class GameWorld extends Observable  {
 				ps.setSpeed(ps.getSpeed() + 1);
 				//ps.move();
 			System.out.println("Increasing speed");
+			this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
 			}
 		}
 	}
@@ -275,6 +299,8 @@ public class GameWorld extends Observable  {
 				ps.setSpeed(ps.getSpeed() - 1);
 				//ps.move();
 			System.out.println("Decreasing speed");
+			this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
 			}
 		}
 	}
@@ -299,6 +325,8 @@ public class GameWorld extends Observable  {
 				//ps.setDirection(ps.getDirection() + 1);
 			ps.Steer(-1);
 			System.out.println("Turn direction of ship");
+			this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
 			}
 			
 		}
@@ -314,6 +342,8 @@ public class GameWorld extends Observable  {
 				
  			s.setMissileCount(10);
 			System.out.println("Missiles Reloaded");
+			this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
 			}
 			
 		}
@@ -354,6 +384,8 @@ public class GameWorld extends Observable  {
             playerScore += 1;
             
             System.out.println("Player has destroyed an Asteroid with a missile! Score increased by 1!");
+            this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
         }
         else
             System.out.println("Error: A missile or Asteroid doesn't exist.");        
@@ -392,6 +424,8 @@ public class GameWorld extends Observable  {
           // ps.setLives(ps.getLives() - 1);
             playerLives -= 1;
             System.out.println("Player has lost a life! Player Lives Remaining: " +  playerLives);
+            this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
         }
         else
             System.out.println("Error: A missile or Player Ship doesn't exist.");    
@@ -427,6 +461,8 @@ public class GameWorld extends Observable  {
             playerLives += 1;
             playerScore += 1;
             System.out.println("Player destroyed Non Player Ship. Update Score: " + playerLives);
+            this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
         }
         else
             System.out.println("Error: A missile or NonPlayer Ship doesn't exist.");    
@@ -462,6 +498,8 @@ public class GameWorld extends Observable  {
             //this.setPlayerLives(this.getPlayerLives() - 1);
             playerLives -= 1;
             System.out.println("Player has lost a life! Player Lives Remaining: " + playerLives);
+            this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
         }
         else
             System.out.println("Error: An asteroid or Player Ship doesn't exist.");    
@@ -498,6 +536,8 @@ public class GameWorld extends Observable  {
             //this.setPlayerLives(this.getPlayerLives() - 1);
             playerLives -= 1;
             System.out.println("PS collided with a NPS! Player has lost a life! Player Lives Remaining: " + playerLives);
+            this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
         }
         else
             System.out.println("Error: A Non Player Ship or Player Ship doesn't exist.");    
@@ -532,6 +572,8 @@ public class GameWorld extends Observable  {
             store.remove(nps);
             store.remove(ast);
             System.out.println("An asteroid and a Non Player Ship Collided! Both are Destroyed!");    
+            this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
         }
         else
             System.out.println("Error: An asteroid or Non Player Ship doesn't exist.");    
@@ -569,7 +611,8 @@ public class GameWorld extends Observable  {
 				store.remove(ast2);
 				store.remove(ast1);
 				System.out.println("Both asteroids destroyed");
-				
+				this.setChanged();
+				this.notifyObservers(new GameWorldProxy(this));
 		}
 		else 
 			System.out.println("Error or Asteroid don't exist");
@@ -630,6 +673,9 @@ public class GameWorld extends Observable  {
 	{
 		System.exit(0);
 	}
+
+
+
 	
 	
 	
