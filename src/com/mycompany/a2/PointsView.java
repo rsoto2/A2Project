@@ -13,30 +13,38 @@ public class PointsView extends Container implements Observer{
 	private Label pointsValueLabel;
 	private Label missileCntValue;
 	private Label elapsedTimeValue;
-	private int livesValueLabel;
+	private Label livesValueLabel;
+	private Label soundLabel;
 	
 	
 	
-	public PointsView()
+	public PointsView(GameWorld gw)
 	{
 		Label pointsTextLabel = new Label("Points: ");
 		Label missileTextValue = new Label("Missiles: ");
 		Label elapsedTextValue = new Label("Time: ");
+		Label livesTextValue = new Label("Lives: ");
+		Label soundTextValue = new Label("Sound: ");
 		
-		pointsValueLabel = new Label("0");
-		missileCntValue = new Label("0");
-		elapsedTimeValue = new Label("0");
+		pointsValueLabel = new Label(Integer.toString(gw.getPlayerScore()));
+		missileCntValue = new Label(Integer.toString(gw.getMissileCount()));
+		elapsedTimeValue = new Label(Integer.toString(gw.getElapseTime()));
+		livesValueLabel = new Label(Integer.toString(gw.getPlayerLives()));
+		soundLabel = new Label("OFF");
 		//livesValueLabel = new Label("0");
 		
 		pointsTextLabel.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		pointsValueLabel.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
+		//pointsValueLabel.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
 		
 		missileTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		missileCntValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
+		//missileCntValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
 		
 		elapsedTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		elapsedTimeValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-	
+		//elapsedTimeValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
+		livesTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
+		
+		soundTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
+		
 		
 		
 		
@@ -54,6 +62,12 @@ public class PointsView extends Container implements Observer{
 		myContainer.add(elapsedTextValue);
 		myContainer.add(elapsedTimeValue);
 		
+		myContainer.add(livesTextValue);
+		myContainer.add(livesValueLabel);
+		
+		myContainer.add(soundTextValue);
+		myContainer.add(soundLabel);
+		
 		
 		this.add(myContainer);
 		//this.add(pointsTextLabel);
@@ -70,6 +84,15 @@ public class PointsView extends Container implements Observer{
 		this.pointsValueLabel.setText(" " + gw.getPlayerScore());
 		this.missileCntValue.setText(" "  + gw.getMissileCount());
 		this.elapsedTimeValue.setText(" " + gw.getElapseTime());
+		this.livesValueLabel.setText(" " + gw.getPlayerLives());
+		
+		if(gw.getSound() == true)
+		{
+			this.soundLabel.setText("ON");
+		}
+		else {
+			this.soundLabel.setText("OFF");
+		}
 		this.repaint();
 		
 		

@@ -1,9 +1,12 @@
 package com.mycompany.a2;
 
+import java.util.Iterator;
+
 public interface IGameWorld {
 
 	int getPlayerScore();
 	
+	int getPlayerLives();
 	int getMissileCount();
 	
 	int getElapseTime();
@@ -49,6 +52,9 @@ public interface IGameWorld {
 	 void removeAstAndNPS();
 	 void removeAsteroids();
 	 void printDisplay();
+	 void setSound(boolean b);
+	 boolean getSound();
+	 public Iterator getIterator();
 //
 //	public void getElapseTime(int et);
 //	

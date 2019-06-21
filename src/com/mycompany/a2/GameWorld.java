@@ -25,7 +25,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 	private PlayerShip ship;
 	private PlayerShip s = null;
 	private MissileLauncher m = null;
-	
+	private boolean soundOn = true;
 	
 	
 	public void addNewAsteroid() {
@@ -72,6 +72,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 	playerScore = 0;
 	playerLives = 3;
 	clock =0;
+	soundOn = false;
 		
 	}	
 	
@@ -614,8 +615,9 @@ public class GameWorld extends Observable  implements IGameWorld{
 				this.setChanged();
 				this.notifyObservers(new GameWorldProxy(this));
 		}
-		else 
+		else if((astro1 != true && astro2 == true) || (astro1 == true && astro2 != true)) {
 			System.out.println("Error or Asteroid don't exist");
+		}
 	}
 	
 	public void printMap() {
@@ -653,25 +655,51 @@ public class GameWorld extends Observable  implements IGameWorld{
 
 	public int getPlayerScore() {
 		// TODO Auto-generated method stub
-		return playerScore;
+		return this.playerScore;
 	}
 
 
 	public int getMissileCount() {
 		// TODO Auto-generated method stub
-		return numPSMissiles;
+		return this.numPSMissiles;
+	}
+	
+	public int getPlayerLives() {
+		return this.playerLives;
 	}
 
 
 	public int getElapseTime() {
 		// TODO Auto-generated method stub
-		return elapsedGameTime;
+		return this.elapsedGameTime;
 	}
 	
 	
 	public void quit()
 	{
 		System.exit(0);
+	}
+
+
+	@Override
+	public void setSound(boolean s) {
+		// TODO Auto-generated method stub
+		this.soundOn = s;
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
+		
+	}
+	
+	public boolean getSound()
+	{
+		return this.soundOn;
+	}
+
+
+	@Override
+	public Iterator getIterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

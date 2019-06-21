@@ -1,11 +1,13 @@
 package com.mycompany.a2;
 
+import java.util.Iterator;
 import java.util.Observable;
 
 public class GameWorldProxy extends Observable implements IGameWorld {
 
 	
 	private GameWorld gw;
+	
 	
 	public GameWorldProxy(GameWorld gw)
 	{
@@ -382,6 +384,59 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 		// TODO Auto-generated method stub
 		gw.printDisplay();
 		
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public void setSound(boolean s) {
+		// TODO Auto-generated method stub
+		gw.setSound(s);
+		
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public Iterator getIterator() {
+		// TODO Auto-generated method stub
+		return gw.getIterator();
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public boolean getSound() {
+		// TODO Auto-generated method stub
+		return gw.getSound();
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public int getPlayerLives() {
+		// TODO Auto-generated method stub
+		return gw.getPlayerLives();
 	}
 
 

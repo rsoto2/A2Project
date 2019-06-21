@@ -8,6 +8,8 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
+import com.codename1.ui.Button;
+import com.codename1.ui.CheckBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
@@ -51,7 +53,7 @@ public class Game extends Form {
 	private AsteroidHitAsteroidCommand aa;
 	private AsteroidHitsNPSCommand astNPS;
 	private TickCommand tick;
-	
+	private SoundCommand sound;
 	
 	
 	private Container leftButtons;
@@ -63,7 +65,7 @@ public class Game extends Form {
 	public Game()  {
 		gw = new GameWorld();
 		mv = new MapView(gw);
-		pv = new PointsView();
+		pv = new PointsView(gw);
 		gw.addObserver(mv);
 		gw.addObserver(pv);
 		this.show();
@@ -211,20 +213,22 @@ public class Game extends Form {
 		
 		
 		
+		
+		
 		this.show();
 		gw.init();
 		//play();
 		
 		
-		//cContainer = new Container();
-		
+	
 		//toolbar menu
 		Toolbar sideMenu = new Toolbar();
+		Toolbar.setOnTopSideMenu(false);
 		quitbutton = new GameButton("Quit");
 		sideMenu.setUIID("ToolBar");
-		sideMenu.getAllStyles().setBgTransparency(0);
-		sideMenu.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.rgb(100, 0, 0)));
-		sideMenu.getAllStyles().setBackgroundGradientStartColor(ColorUtil.GRAY);
+		//sideMenu.getAllStyles().setBgTransparency(0);
+		//sideMenu.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.rgb(100, 0, 0)));
+		//sideMenu.getAllStyles().setBackgroundGradientStartColor(ColorUtil.GRAY);
 		this.setToolbar(sideMenu);
 		sideMenu.setTitle("Asteroid Game");
 		sideMenu.getTitleComponent().getAllStyles().setFgColor(ColorUtil.MAGENTA);
@@ -253,6 +257,23 @@ public class Game extends Form {
 		//this.addKeyListener(-1, undo);
 		sideMenu.addCommandToLeftSideMenu(undo);
 		
+		CheckBox s = new CheckBox();
+		
+		//Button sounds = new Button();
+		
+		s.setCommand(new SoundCommand(gw));
+		
+		//sound = new SoundCommand(gw);
+		sideMenu.addComponentToLeftSideMenu(s);
+		s.getAllStyles().setBgTransparency(255);
+	//	s.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
+		//s.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
+		//s.getAllStyles().setPadding(TOP, 5);
+		//s.getAllStyles().setPadding(BOTTOM, 5);
+		//s.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.rgb(255, 255, 255)));
+		//s.getAllStyles().setBackgroundGradientStartColor(ColorUtil.MAGENTA);
+		
+	
 //		gw.init();
 //		play();
 //		quit();
