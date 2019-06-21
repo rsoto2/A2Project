@@ -615,9 +615,8 @@ public class GameWorld extends Observable  implements IGameWorld{
 				this.setChanged();
 				this.notifyObservers(new GameWorldProxy(this));
 		}
-		else if((astro1 != true && astro2 == true) || (astro1 == true && astro2 != true)) {
+		else 
 			System.out.println("Error or Asteroid don't exist");
-		}
 	}
 	
 	public void printMap() {

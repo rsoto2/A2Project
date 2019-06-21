@@ -26,28 +26,23 @@ public class PointsView extends Container implements Observer{
 		Label livesTextValue = new Label("Lives: ");
 		Label soundTextValue = new Label("Sound: ");
 		
+		//labels
 		pointsValueLabel = new Label(Integer.toString(gw.getPlayerScore()));
 		missileCntValue = new Label(Integer.toString(gw.getMissileCount()));
 		elapsedTimeValue = new Label(Integer.toString(gw.getElapseTime()));
 		livesValueLabel = new Label(Integer.toString(gw.getPlayerLives()));
 		soundLabel = new Label("OFF");
-		//livesValueLabel = new Label("0");
 		
+		//labels
 		pointsTextLabel.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		//pointsValueLabel.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		
 		missileTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		//missileCntValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		
 		elapsedTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		//elapsedTimeValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
 		livesTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
-		
 		soundTextValue.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
 		
 		
 		
-		
+		//container
 		Container myContainer = new Container();
 		
 		myContainer.setLayout(new BoxLayout(BoxLayout.X_AXIS));
@@ -70,9 +65,6 @@ public class PointsView extends Container implements Observer{
 		
 		
 		this.add(myContainer);
-		//this.add(pointsTextLabel);
-		//this.add(missileCntValue);
-		//this.add(elapsedTimeValue);
 	}
 
 

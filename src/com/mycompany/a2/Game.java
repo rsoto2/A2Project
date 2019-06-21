@@ -69,10 +69,9 @@ public class Game extends Form {
 		gw.addObserver(mv);
 		gw.addObserver(pv);
 		this.show();
-		//this.setTitle("Asteroid");
+
 		this.setLayout(new BorderLayout());
 		this.add(BorderLayout.CENTER, mv);
-		
 		this.add(BorderLayout.NORTH, pv);
 		
 		
@@ -80,16 +79,14 @@ public class Game extends Form {
 		leftButtons.getAllStyles().setBgTransparency(0);
 		leftButtons.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
 		leftButtons.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.BLACK));
-		//leftButtons.getAllStyles().setBackgroundGradientStartColor(ColorUtil.BLACK);
 		leftButtons.getAllStyles().setBgColor(ColorUtil.GREEN);
-		//leftButtons.setFocus(false);
-		
+
 		
 
 		this.add(BorderLayout.WEST, leftButtons);
 		
 
-
+		//asteroidbutton
 		asteroid = new GameButton("Asteroid");
 		asteroid.getAllStyles().setBgTransparency(255);
 		asteroid.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
@@ -100,6 +97,8 @@ public class Game extends Form {
 		leftButtons.addComponent(asteroid);
 		asteroid.setFocusable(false);
 		
+		
+		//nonplayershipbutton
 		npsbutton = new GameButton("NPS");
 		npsbutton.getAllStyles().setBgTransparency(255);
 		npsbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
@@ -110,6 +109,7 @@ public class Game extends Form {
 		leftButtons.addComponent(npsbutton);
 		npsbutton.setFocusable(false);
 		
+		//stationbutton
 		ssbutton = new GameButton("Station");
 		ssbutton.getAllStyles().setBgTransparency(255);
 		ssbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
@@ -120,6 +120,7 @@ public class Game extends Form {
 		leftButtons.addComponent(ssbutton);
 		ssbutton.setFocusable(false);
 		
+		//shipbutton
 		shipbutton= new GameButton("Ship");
 		shipbutton.getAllStyles().setBgTransparency(255);
 		shipbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
@@ -147,7 +148,7 @@ public class Game extends Form {
 		rl= new TurnRightCommand(gw);
 		this.addKeyListener(-94, rl);
 
-		
+		//missile button
 		missilebutton = new GameButton("Fire Missile");
 		missilebutton.getAllStyles().setBgTransparency(255);
 		missilebutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
@@ -158,6 +159,7 @@ public class Game extends Form {
 		leftButtons.addComponent(missilebutton);
 		missilebutton.setFocusable(false);
 		
+		//hyperbutton
 		hyperbutton = new GameButton("HyperSpace");
 		hyperbutton.getAllStyles().setBgTransparency(255);
 		hyperbutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
@@ -226,13 +228,13 @@ public class Game extends Form {
 		Toolbar.setOnTopSideMenu(false);
 		quitbutton = new GameButton("Quit");
 		sideMenu.setUIID("ToolBar");
-		//sideMenu.getAllStyles().setBgTransparency(0);
-		//sideMenu.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.rgb(100, 0, 0)));
-		//sideMenu.getAllStyles().setBackgroundGradientStartColor(ColorUtil.GRAY);
+		sideMenu.getAllStyles().setBgTransparency(0);
+		sideMenu.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.rgb(100, 0, 0)));
+		sideMenu.getAllStyles().setBackgroundGradientStartColor(ColorUtil.GRAY);
 		this.setToolbar(sideMenu);
 		sideMenu.setTitle("Asteroid Game");
-		sideMenu.getTitleComponent().getAllStyles().setFgColor(ColorUtil.MAGENTA);
-		sideMenu.addCommandToOverflowMenu(m);
+		sideMenu.getTitleComponent().getAllStyles().setFgColor(ColorUtil.BLUE);
+		
 		
 		//Command newGame = new Command("Quit");
 		q = new QuitGameCommand(gw);
@@ -263,15 +265,11 @@ public class Game extends Form {
 		
 		s.setCommand(new SoundCommand(gw));
 		
-		//sound = new SoundCommand(gw);
+		//Sounds Button
 		sideMenu.addComponentToLeftSideMenu(s);
 		s.getAllStyles().setBgTransparency(255);
-	//	s.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
-		//s.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
-		//s.getAllStyles().setPadding(TOP, 5);
-		//s.getAllStyles().setPadding(BOTTOM, 5);
-		//s.getAllStyles().setBorder(Border.createLineBorder(3, ColorUtil.rgb(255, 255, 255)));
-		//s.getAllStyles().setBackgroundGradientStartColor(ColorUtil.MAGENTA);
+		s.getAllStyles().setBgColor(ColorUtil.GRAY);
+
 		
 	
 //		gw.init();
