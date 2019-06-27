@@ -54,7 +54,7 @@ public class Game extends Form {
 	private AsteroidHitsNPSCommand astNPS;
 	private TickCommand tick;
 	private SoundCommand sound;
-	
+	//private PlaySound gameSound;
 	
 	private Container leftButtons;
 	
@@ -68,11 +68,12 @@ public class Game extends Form {
 		pv = new PointsView(gw);
 		gw.addObserver(mv);
 		gw.addObserver(pv);
-		this.show();
+		gw.init();
+		//this.show();
 
-		this.setLayout(new BorderLayout());
-		this.add(BorderLayout.CENTER, mv);
-		this.add(BorderLayout.NORTH, pv);
+		setLayout(new BorderLayout());
+//		this.add(BorderLayout.CENTER, mv);
+//		this.add(BorderLayout.NORTH, pv);
 		
 		
 		leftButtons = new Container();
@@ -83,7 +84,7 @@ public class Game extends Form {
 
 		
 
-		this.add(BorderLayout.WEST, leftButtons);
+		//this.add(BorderLayout.WEST, leftButtons);
 		
 
 		//asteroidbutton
@@ -213,12 +214,13 @@ public class Game extends Form {
 		q = new QuitGameCommand(gw);
 		this.addKeyListener('q', q);
 		
-		
-		
-		
-		
-		this.show();
-		gw.init();
+//		this.add(BorderLayout.WEST, leftButtons);
+//		
+//		this.add(BorderLayout.CENTER, mv);
+//		this.add(BorderLayout.NORTH, pv);
+//		
+//		this.show();
+		//gw.init();
 		//play();
 		
 		
@@ -269,8 +271,18 @@ public class Game extends Form {
 		sideMenu.addComponentToLeftSideMenu(s);
 		s.getAllStyles().setBgTransparency(255);
 		s.getAllStyles().setBgColor(ColorUtil.GRAY);
-
 		
+		
+		
+		//gw.addObserver(mv);
+	
+
+		add(BorderLayout.WEST, leftButtons);
+		
+		add(BorderLayout.CENTER, mv);
+		add(BorderLayout.NORTH, pv);
+		
+		this.show();
 	
 //		gw.init();
 //		play();

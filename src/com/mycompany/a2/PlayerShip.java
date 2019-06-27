@@ -88,6 +88,19 @@ public class PlayerShip extends Ship implements ISteerable {
 		setLocation(512, 384);
 	}
 	
+	public void incSpeed()
+	{
+		int current = getSpeed();
+		setSpeed(current + 1);
+		
+	}
+	
+	public void deSpeed()
+	{
+		int current = getSpeed() - 1;
+		setSpeed(current - 1);
+	}
+	
 	public String toString() {
 		return //("PlayerShip: loc= " + Math.round(this.getLocationX()) + "," + Math.round(this.getLocationY()) +
 		("PlayerShip Loc = : " + getLocation() + 

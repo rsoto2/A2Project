@@ -1,9 +1,13 @@
 package com.mycompany.a2;
 import java.util.Random;
+
+import com.codename1.charts.models.Point;
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
+
 import java.lang.Math;
 
-public class Asteroid extends MovableGameObject {
+public class Asteroid extends MovableGameObject implements Movable, IDrawable {
 	private int size;
 	
 	private static final int MAX_SPEED = 15;
@@ -39,6 +43,20 @@ public String toString()
 		);
 	
 }
+
+
+	
+
+public void draw(Graphics g) {
+	// TODO Auto-generated method stub
+	g.setColor(this.getColor());
+	int xLoc = (int) this.getLocationX();// shape location relative
+	int yLoc = (int) this.getLocationY();// to parents origin
+	
+	g.fillRect(xLoc, yLoc, 10, 10);
+	
+}
+
 
 	
 	

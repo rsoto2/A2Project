@@ -9,6 +9,7 @@ public class MissileLauncher extends MovableGameObject implements ISteerable {
 		super(ColorUtil.GRAY, 0, 0);
 		this.getLocationX();
 		this.getLocationY();
+		//super.setLocation(x, y);
 		//this.getDirection();
 		//this.setDirection(direction);
 		this.setSpeed(speed);

@@ -408,9 +408,9 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 
 
 	@Override
-	public Iterator getIterator() {
+	public IIterator getObjectIterator() {
 		// TODO Auto-generated method stub
-		return gw.getIterator();
+		return gw.getObjectIterator();
 	}
 
 
@@ -437,6 +437,73 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	public int getPlayerLives() {
 		// TODO Auto-generated method stub
 		return gw.getPlayerLives();
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public void setHeight(int height) {
+		// TODO Auto-generated method stub
+		gw.setHeight(height);
+		
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public void setWidth(int width) {
+		// TODO Auto-generated method stub
+		gw.setWidth(width);
+		
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public int getNPSCount() {
+		// TODO Auto-generated method stub
+		return gw.getNPSCount();
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public SpaceCollection getCollection() {
+		// TODO Auto-generated method stub
+		return gw.getCollection();
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public IDrawable draw() {
+		// TODO Auto-generated method stub
+		return gw.draw();
 	}
 
 

@@ -5,7 +5,7 @@ import com.codename1.charts.util.ColorUtil;
 public class NonPlayerShip extends Ship{
 
 	private int size;
-	private MissileLauncher missileLauncher;
+	private NonSteerableMissile ml;
 	
 	
 	public NonPlayerShip() {
@@ -18,9 +18,13 @@ public class NonPlayerShip extends Ship{
 		this.setColor(300, 0, 0);
 		this.size = GameObject.rand.nextInt(MAX_SIZE - MIN_SIZE + 1) + MIN_SIZE;
 		setMissileCount(4);
+		//ml = new NonSteerableMissile(this , ColorUtil.MAGENTA, this.getSpeed(), this.getDirection(), this.getLocationX(), this.getLocationY());
 		
 		
-		
+	}
+	
+	public NonSteerableMissile getMl() {
+		return this.ml;
 	}
 	
 	
