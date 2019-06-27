@@ -7,7 +7,7 @@ import com.codename1.ui.Graphics;
 
 import java.lang.Math;
 
-public class Asteroid extends MovableGameObject implements Movable, IDrawable {
+public class Asteroid extends MovableGameObject implements Movable {
 	private int size;
 	
 	private static final int MAX_SPEED = 15;
@@ -47,14 +47,17 @@ public String toString()
 
 	
 
-public void draw(Graphics g) {
+
+
+@Override
+public void paint(Graphics g) {
+	// TODO Auto-generated method stub
 	// TODO Auto-generated method stub
 	g.setColor(this.getColor());
 	int xLoc = (int) this.getLocationX();// shape location relative
 	int yLoc = (int) this.getLocationY();// to parents origin
 	
 	g.fillRect(xLoc, yLoc, 10, 10);
-	
 }
 
 

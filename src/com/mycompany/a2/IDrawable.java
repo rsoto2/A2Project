@@ -5,6 +5,6 @@ import com.codename1.ui.Graphics;
 
 public interface IDrawable {
 
-	public void draw(Graphics g);
+	public void paint(Graphics g);
 	
 }

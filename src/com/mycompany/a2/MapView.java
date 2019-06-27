@@ -1,6 +1,8 @@
 package com.mycompany.a2;
 
 import java.util.Observable;
+import com.codename1.ui.Graphics;
+
 import java.util.Observer;
 
 import com.codename1.charts.models.Point;
@@ -9,6 +11,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.FlowLayout;
 
 public class MapView extends Container implements Observer {
@@ -16,24 +19,30 @@ public class MapView extends Container implements Observer {
 	private int height;
 	private int width;
 	//private GameWorld gw;
-	//private IGameWorld gw;
+	private IGameWorld gw;
 	
 	private TextArea mapView;
 	private SpaceCollection objects;
+	Container cont;
 	
 	
 	public MapView(GameWorld gw)
 	{
-		this.height = this.getMapHeight();
-		this.width = this.getMapWidth();
 		
-	
+		this.height = this.getHeight();
+		this.width = this.getWidth();
+		
+		cont = new Container();
+		
 		
 		this.getAllStyles().setFgColor(ColorUtil.rgb(255, 0, 0));
-		mapView = new TextArea();
-		this.add(mapView);
-		this.setFocusable(false);
-		this.setEnabled(false);
+		//mapView = new TextArea();
+		add(cont);
+		//add(BorderLayout.CENTER,cont);
+
+		//this.add(mapView);
+		//mapView.setFocusable(false);
+		//mapView.setEnabled(false);
 		
 		
 	}
@@ -72,56 +81,29 @@ public class MapView extends Container implements Observer {
 //		gw.printMap();
 		
 		IGameWorld gw = (IGameWorld) data;
-	
-		IIterator it = gw.getObjectIterator();
+		this.gw = gw;
 		
-		while(it.hasNext()) {
+
+		
 			
-			//it.getNext().draw();
-			
-		}
+		
 		
 		this.repaint();
 	}
-
-
-
-
 	
-//	
-//	public void paint(Graphics g)
-//	{
-//		super.paint(g);
-//		Point pCmpRelPrnt = new Point(getX(), getY());
-//		IIterator it = GameWorld.getCollection.getIterator();
-//	}
-
+		public void paint(Graphics g)
+	{
+		super.paint(g);
+		IIterator it = this.gw.getObjectIterator();
+		while(it.hasNext()) {
+			((GameObject) it.getNext()).paint(g);
+		}
+		
+	}
 	
 
-//	public void paint(Graphics g) {
-//		super.paint(g);
-//		objects = gww.getCollection();
-//		IIterator objectPainter = objects.getIterator();
-//		
-//		Object currentObj = new Object();
-//		
-//		while(objectPainter.hasNext() ){
-//			ObjectLocation pCmpRelPrnt = new ObjectLocation(this.getX(), this.getY());
-//			currentObj = objectPainter.getNext();
-//			if(currentObj instanceof Movable) {		
-//				int x = (int) ((GameObject)currentObj).getLocation().getX();
-//				int y = (int) ((GameObject)currentObj).getLocation().getY();
-//				int rightWall = this.getWidth() + this.getX();
-//				int leftWall = this.getX();
-//				int bottomWall = this.getY() + this.getHeight();
-//				int topWall = this.getY();
-//			
-//			}
-//			if(currentObj instanceof IDrawable) {
-//				((IDrawable)currentObj).draw(g, pCmpRelPrnt);
-//			}
-//		}
-//	}
+	
+
 	
 	
 }

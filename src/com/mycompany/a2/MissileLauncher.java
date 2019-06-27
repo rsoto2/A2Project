@@ -1,6 +1,7 @@
 package com.mycompany.a2;
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
 
 public class MissileLauncher extends MovableGameObject implements ISteerable {
 
@@ -51,7 +52,16 @@ public class MissileLauncher extends MovableGameObject implements ISteerable {
 		setDirection(getDirection() + amount);
 		
 	}
-	
+
+
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 	
 	

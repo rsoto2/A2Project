@@ -1122,8 +1122,8 @@ public class GameWorld extends Observable  implements IGameWorld{
 		
 		IIterator it = objects.getIterator();
 		while(it.hasNext()) {
-			
-			//System.out.println(((GameObject)it.getNext()).toString());
+			GameObject o = (GameObject) it.getNext();
+			System.out.println(o);
 		}
 
 		
@@ -1227,29 +1227,29 @@ public class GameWorld extends Observable  implements IGameWorld{
 //	}
 
 
-	@Override
-	public void setHeight(int h) {
-		// TODO Auto-generated method stub
-		this.gheight = h;
-		
-	}
-
-	public double getHeight()
-	{
-		return this.gheight;
-	}
-
-	@Override
-	public void setWidth(int w) {
-		// TODO Auto-generated method stub
-		this.gwidth = w;
-		
-	}
-	
-	public double getWidth()
-	{
-		return this.gwidth;
-	}
+//	@Override
+//	public void setHeight(int h) {
+//		// TODO Auto-generated method stub
+//		this.gheight = h;
+//		
+//	}
+//
+//	public double getHeight()
+//	{
+//		return this.gheight;
+//	}
+//
+//	@Override
+//	public void setWidth(int w) {
+//		// TODO Auto-generated method stub
+//		this.gwidth = w;
+//		
+//	}
+//	
+//	public double getWidth()
+//	{
+//		return this.gwidth;
+//	}
 	@Override
 	public IIterator getObjectIterator() {
 		// TODO Auto-generated method stub
@@ -1263,14 +1263,14 @@ public class GameWorld extends Observable  implements IGameWorld{
 		return this.objects;
 	}
 
-//
-	@Override
-	public IDrawable draw() {
-		// TODO Auto-generated method stub
-		//return this.draw();
-		return draw();
-	}
-//	
+
+//	@Override
+//	public IDrawable draw() {
+//		// TODO Auto-generated method stub
+//		//return this.draw();
+//		return draw();
+//	}
+
 
 
 

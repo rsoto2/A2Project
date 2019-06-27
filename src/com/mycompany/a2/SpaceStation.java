@@ -1,6 +1,7 @@
 package com.mycompany.a2;
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
 
 public class SpaceStation extends FixedGameObject {
 	
@@ -43,4 +44,14 @@ public class SpaceStation extends FixedGameObject {
 		" color= " + GameObject.getColorString(getColor()) + 
 		" blinkRate= " + blinkRate);
 	}
+
+
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

@@ -55,10 +55,10 @@ public interface IGameWorld {
 	 void setSound(boolean b);
 	 boolean getSound();
 	 public IIterator getObjectIterator();
-	 void setHeight(int height);
-	 void setWidth(int width);
+	// void setHeight(int height);
+	// void setWidth(int width);
 	 public SpaceCollection getCollection();
-	 public IDrawable draw();
+	// public IDrawable draw();
 //
 //	public void getElapseTime(int et);
 //	

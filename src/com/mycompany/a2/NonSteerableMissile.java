@@ -1,5 +1,7 @@
 package com.mycompany.a2;
 
+import com.codename1.ui.Graphics;
+
 public class NonSteerableMissile extends MovableGameObject implements Movable {
 private NonPlayerShip owner;
 	
@@ -16,4 +18,12 @@ private NonPlayerShip owner;
 	public void move() {
 		this.setLocation(owner.getLocationX(), owner.getLocationY());	
 	}
+
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

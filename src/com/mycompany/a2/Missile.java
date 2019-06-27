@@ -1,6 +1,7 @@
 package com.mycompany.a2;
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point2D;
 
 public class Missile extends MovableGameObject implements Movable{
@@ -79,6 +80,14 @@ public String toString() {
 				);
 	}
 }
+
+@Override
+public void paint(Graphics g) {
+	// TODO Auto-generated method stub
+	
+}
+
+
 
 	
 	
