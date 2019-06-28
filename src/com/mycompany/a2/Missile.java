@@ -1,5 +1,6 @@
 package com.mycompany.a2;
 
+import com.codename1.charts.models.Point;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point2D;
@@ -16,7 +17,7 @@ public Missile(int color, double x, double y, int speed, int direction, Ship own
 	
 	this.owner = owner;
 	this.getLocation();
-	this.setColor(255, 0, 0);
+	this.setColor(80, 80, 80);
 	this.setSpeed(15);
 	this.getDirection();
 	decrementFuelLevel();
@@ -82,9 +83,15 @@ public String toString() {
 }
 
 @Override
-public void paint(Graphics g) {
+public void draw(Graphics g, Point pCmpRelPrnt ) {
 	// TODO Auto-generated method stub
+	g.setColor(this.getColor());
+	int xLoc = (int) (pCmpRelPrnt.getX() + (int) this.getLocationX());
+	int yLoc = (int) (pCmpRelPrnt.getY() + (int) this.getLocationY());
+	//int xLoc = (int) ((int) this.getLocationX() + pCmpRelPrnt.getX());// shape location relative
+	//int yLoc = (int) ((int) this.getLocationY() + pCmpRelPrnt.getY());// to parents origin
 	
+	g.fillRect(xLoc, yLoc, 10, 10);
 }
 
 

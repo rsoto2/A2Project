@@ -5,14 +5,14 @@ import com.codename1.media.MediaManager;
 import com.codename1.ui.Display;
 import com.codename1.media.Media;
 
-public class PlaySound {
-
-	public void PlaySound(String fileName)
+public class PlaySound implements Runnable {
+	Media m;
+	public PlaySound(String fileName)
 	{
 		try {
-			InputStream is = Display.getInstance().getResourceAsStream(getClass(), "/" + fileName);
-			Media m = MediaManager.createMedia(is, "audio/wav");
-			m.play();
+			InputStream in = Display.getInstance().getResourceAsStream(getClass(), "/" + fileName);
+			m = MediaManager.createMedia(in, "audio/wav", this);
+			//m.play();
 		}
 		
 		catch (IOException e) {
@@ -22,10 +22,21 @@ public class PlaySound {
 	}
 	
 	
-	public void sound()
+	public void play()
 	{
-		PlaySound("frogs.wav");
+		//PlaySound("frogs.wav");
+		m.play();
 	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		m.setTime(0);
+		m.play();
+		
+	}
+	
 	
 	
 	

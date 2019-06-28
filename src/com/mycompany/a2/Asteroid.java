@@ -7,9 +7,9 @@ import com.codename1.ui.Graphics;
 
 import java.lang.Math;
 
-public class Asteroid extends MovableGameObject implements Movable {
+public class Asteroid extends MovableGameObject implements Movable, IDrawable {
 	private int size;
-	
+	private boolean selected = false;
 	private static final int MAX_SPEED = 15;
 	private static final int MAX_DIR = 360;
 	private static final int MIN = 0;
@@ -50,17 +50,21 @@ public String toString()
 
 
 @Override
-public void paint(Graphics g) {
+public void draw(Graphics g, Point pCmpRelPrnt) {
 	// TODO Auto-generated method stub
 	// TODO Auto-generated method stub
 	g.setColor(this.getColor());
-	int xLoc = (int) this.getLocationX();// shape location relative
-	int yLoc = (int) this.getLocationY();// to parents origin
+	int xLoc = (int) (pCmpRelPrnt.getX() + (int) this.getLocationX());
+	int yLoc = (int) (pCmpRelPrnt.getY() + (int) this.getLocationY());
+	//int xLoc = (int) ((int) this.getLocationX() + pCmpRelPrnt.getX());// shape location relative
+	//int yLoc = (int) ((int) this.getLocationY() + pCmpRelPrnt.getY());// to parents origin
 	
 	g.fillRect(xLoc, yLoc, 10, 10);
 }
 
 
-	
-	
+
 }
+
+
+

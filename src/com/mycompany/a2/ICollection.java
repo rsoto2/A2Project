@@ -2,6 +2,6 @@ package com.mycompany.a2;
 
 public interface ICollection {
 
-	void add(Object obj);
+	void add(GameObject obj);
 	IIterator getIterator();
 }

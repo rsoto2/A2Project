@@ -1121,9 +1121,10 @@ public class GameWorld extends Observable  implements IGameWorld{
 //		}
 		
 		IIterator it = objects.getIterator();
+		GameObject o;
 		while(it.hasNext()) {
-			GameObject o = (GameObject) it.getNext();
-			System.out.println(o);
+			o = (GameObject) it.getNext();
+			System.out.println(o.toString());
 		}
 
 		
@@ -1227,29 +1228,29 @@ public class GameWorld extends Observable  implements IGameWorld{
 //	}
 
 
-//	@Override
-//	public void setHeight(int h) {
-//		// TODO Auto-generated method stub
-//		this.gheight = h;
-//		
-//	}
-//
-//	public double getHeight()
-//	{
-//		return this.gheight;
-//	}
-//
-//	@Override
-//	public void setWidth(int w) {
-//		// TODO Auto-generated method stub
-//		this.gwidth = w;
-//		
-//	}
-//	
-//	public double getWidth()
-//	{
-//		return this.gwidth;
-//	}
+	@Override
+	public void setHeight(int h) {
+		// TODO Auto-generated method stub
+		this.gheight = h;
+		
+	}
+
+	public double getHeight()
+	{
+		return this.gheight;
+	}
+
+	@Override
+	public void setWidth(int w) {
+		// TODO Auto-generated method stub
+		this.gwidth = w;
+		
+	}
+	
+	public double getWidth()
+	{
+		return this.gwidth;
+	}
 	@Override
 	public IIterator getObjectIterator() {
 		// TODO Auto-generated method stub

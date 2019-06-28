@@ -1,5 +1,6 @@
 package com.mycompany.a2;
 
+import com.codename1.charts.models.Point;
 import com.codename1.ui.Graphics;
 
 public class NonSteerableMissile extends MovableGameObject implements Movable {
@@ -20,9 +21,13 @@ private NonPlayerShip owner;
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void draw(Graphics g,  Point pCmpRelPrnt) {
 		// TODO Auto-generated method stub
+		g.setColor(this.getColor());
+		int xLoc = (int) ((int) this.getLocationX() + pCmpRelPrnt.getX());// shape location relative
+		int yLoc = (int) ((int) this.getLocationY() + pCmpRelPrnt.getY());// to parents origin
 		
+		g.fillRect(xLoc, yLoc, 10, 10);
 	}
 
 

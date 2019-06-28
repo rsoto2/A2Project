@@ -446,26 +446,26 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 
 
 
-//	@Override
-//	public void setHeight(int height) {
-//		// TODO Auto-generated method stub
-//		gw.setHeight(height);
-//		
-//	}
-//
-//
-//
-//
-//
-//
-//
-//
-//	@Override
-//	public void setWidth(int width) {
-//		// TODO Auto-generated method stub
-//		gw.setWidth(width);
-//		
-//	}
+	@Override
+	public void setHeight(int height) {
+		// TODO Auto-generated method stub
+		gw.setHeight(height);
+		
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public void setWidth(int width) {
+		// TODO Auto-generated method stub
+		gw.setWidth(width);
+		
+	}
 
 
 

@@ -1,6 +1,8 @@
 package com.mycompany.a2;
 
+import com.codename1.charts.models.Point;
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
 
 public class PlayerShip extends Ship implements ISteerable {
 	
@@ -24,7 +26,7 @@ public class PlayerShip extends Ship implements ISteerable {
 		//this.setLocation(0, 0);
 		//this.getDirection();
 		//this.setSpeed(0);
-		setColor(255,0,0);
+		setColor(0,150, 40);
 		//setLocation(512, 384);;
 		lives = 3;
 		playerScore = 0;
@@ -126,6 +128,13 @@ public class PlayerShip extends Ship implements ISteerable {
 		
 	}
 
+	
+//	public void draw(Graphics g, Point origin)
+//	{
+//		int x = (int)this.getX() + (int)origin.getX();
+//		int y = (int) this.getY() + (int) origin.getY();
+//		g.setColor(color);
+//	}
 
 	
 	

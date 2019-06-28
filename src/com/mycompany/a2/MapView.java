@@ -13,6 +13,7 @@ import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.plaf.Border;
 
 public class MapView extends Container implements Observer {
 	
@@ -22,8 +23,8 @@ public class MapView extends Container implements Observer {
 	private IGameWorld gw;
 	
 	private TextArea mapView;
-	private SpaceCollection objects;
-	Container cont;
+	private SpaceCollection getCollection;
+	//Container cont;
 	
 	
 	public MapView(GameWorld gw)
@@ -31,14 +32,16 @@ public class MapView extends Container implements Observer {
 		
 		this.height = this.getHeight();
 		this.width = this.getWidth();
+		this.getAllStyles().setFgColor(ColorUtil.rgb(0, 0, 255));
 		
-		cont = new Container();
 		
-		
-		this.getAllStyles().setFgColor(ColorUtil.rgb(255, 0, 0));
+//		this.setLayout(new BorderLayout());
+//		this.getAllStyles().setBorder(Border.createLineBorder(2, ColorUtil.GREEN));
+//		this.getAllStyles().setBgColor(ColorUtil.BLACK);
+//		this.getAllStyles().setBgTransparency(225);
+//		this.getAllStyles().setFgColor(ColorUtil.rgb(255, 0, 0));
 		//mapView = new TextArea();
-		add(cont);
-		//add(BorderLayout.CENTER,cont);
+		
 
 		//this.add(mapView);
 		//mapView.setFocusable(false);
@@ -51,7 +54,7 @@ public class MapView extends Container implements Observer {
 
 	public int getMapWidth() 
 	{
-		return width;
+		return this.getWidth();
 	}
 	
 	public void setMapWidth(int w)
@@ -61,7 +64,7 @@ public class MapView extends Container implements Observer {
 	
 	public int getMapHeight()
 	{
-		return height;
+		return this.getHeight();
 	}
 	
 	public void setMapHeight(int h)
@@ -69,21 +72,25 @@ public class MapView extends Container implements Observer {
 		this.height = h;
 	}
 	
-	
-	
+//	public void setP(int width, int height)
+//	{
+//		this.setWidth(width);
+//		this.setHeight(height);
+//	}
+//	
 	
 	@Override
 	public void update(Observable observable, Object data) {
 		// TODO Auto-generated method stub
-//		IGameWorld gw = (IGameWorld) observable;
-//		
-//		//System.out.println("Update");
-//		gw.printMap();
+		//IGameWorld gw = (IGameWorld) observable;
+		
+		//System.out.println("Update");
+		//gw.printMap();
 		
 		IGameWorld gw = (IGameWorld) data;
 		this.gw = gw;
+		//gw.printMap();
 		
-
 		
 			
 		
@@ -94,9 +101,21 @@ public class MapView extends Container implements Observer {
 		public void paint(Graphics g)
 	{
 		super.paint(g);
+		Point pCmpRelPrnt = new Point(getX(), getY());
+
+		if(gw != null)  {
 		IIterator it = this.gw.getObjectIterator();
 		while(it.hasNext()) {
-			((GameObject) it.getNext()).paint(g);
+			
+			//GameObject o = (GameObject) it.getNext();
+			
+				//((IDrawable) o).draw(g, pCmpRelPrnt);
+			
+			((GameObject) it.getNext()).draw(g, pCmpRelPrnt);
+			
+			
+			
+		}
 		}
 		
 	}

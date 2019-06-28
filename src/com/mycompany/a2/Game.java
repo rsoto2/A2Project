@@ -56,6 +56,7 @@ public class Game extends Form {
 	private SoundCommand sound;
 	//private PlaySound gameSound;
 	
+	
 	private Container leftButtons;
 	
 	
@@ -283,6 +284,8 @@ public class Game extends Form {
 		add(BorderLayout.NORTH, pv);
 		
 		this.show();
+		//gameSound = new PlaySound("frogs.wav");
+		//gameSound.play();
 	
 //		gw.init();
 //		play();
