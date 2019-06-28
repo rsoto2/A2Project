@@ -87,7 +87,7 @@ public class PlayerShip extends Ship implements ISteerable {
 	
 	public void reset() 
 	{
-		setLocation(512, 384);
+		this.setLocation(512, 384);
 	}
 	
 	public void incSpeed()

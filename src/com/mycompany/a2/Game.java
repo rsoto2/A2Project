@@ -8,6 +8,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
+import com.codename1.ui.util.UITimer;
 import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Command;
@@ -54,7 +55,8 @@ public class Game extends Form implements Runnable{
 	private AsteroidHitsNPSCommand astNPS;
 	private TickCommand tick;
 	private SoundCommand sound;
-	//private PlaySound gameSound;
+	private PlaySound gameSound;
+	
 	
 	
 	private Container leftButtons;
@@ -277,12 +279,13 @@ public class Game extends Form implements Runnable{
 		
 		//gw.addObserver(mv);
 	
-
+		UITimer time = new UITimer(this);
+		time.schedule(100, true, this);
 		add(BorderLayout.WEST, leftButtons);
 		
 		add(BorderLayout.CENTER, mv);
 		add(BorderLayout.NORTH, pv);
-		
+		run();
 		this.show();
 		//gameSound = new PlaySound("frogs.wav");
 		//gameSound.play();
@@ -299,8 +302,9 @@ public class Game extends Form implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		//int x = 1;
 		gw.tick();
-		
+		//return;
 	}
 	
 

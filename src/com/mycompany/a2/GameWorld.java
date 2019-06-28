@@ -265,25 +265,34 @@ public class GameWorld extends Observable  implements IGameWorld{
 			int i = iter.current();
 			GameObject obj = (GameObject) iter.getNext();
 			
-		
-			if(obj instanceof Missile && ((Missile) obj).getFuel() > 1 ) {
-				iter.remove(i);
-				
+			if(obj instanceof MovableGameObject) {
+				//((MovableGameObject) obj).move();
+				((MovableGameObject) obj).move();
+			}
 			
-			}else if(obj instanceof Missile && ((Missile) obj).getFuel() != 1) {
+			else if(obj instanceof Missile && ((Missile) obj).getFuel() != 1) {
 				((Missile) obj).setFuel(fuel - 1);;
 			
-			}else if(!(obj instanceof FixedGameObject)) {
-				((MovableGameObject) obj).move();
-			
-			}else {
-				continue;
+			}else if(obj instanceof FixedGameObject) {
+				//((MovableGameObject) obj).move();
+				SpaceStation spc = (SpaceStation) iter.getNext();
+				
+				if(clock % spc.getBlinkRate() == 0)
+				{
+					if(spc.getLight())
+						spc.setLight(false);
+					else 
+						spc.setLight(true);
+				}
+				
+				
 			}
-			this.setChanged();
-			this.notifyObservers(new GameWorldProxy(this));
+			
 		}
 		
-		clock++;
+		elapsedGameTime++;
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
 	}
 
 	
