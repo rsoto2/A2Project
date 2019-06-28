@@ -16,12 +16,23 @@ public abstract class GameObject implements IDrawable {
 	private final double MAX_Y = 768;
 	
 	
-	public GameObject(double location, int color)
+	public GameObject(int color, double x, double y)
 	{
 		this.color = color;
-		this.location = new Point2D(rand.nextInt((int) MAX_X + 1), rand.nextInt((int) MAX_Y));
+		//this.location = new Point2D(rand.nextInt((int) MAX_X + 1), rand.nextInt((int) MAX_Y));
 		//this.xLocation = xLocation;
 		//this.yLocation = yLocation;
+		this.location = new Point2D(x, y);
+	}
+	
+	public GameObject(int color)
+	{
+		Random rand = new Random();
+		double x = rand.nextDouble() * 1024;
+		double y = rand.nextDouble() * 768;
+		this.location = new Point2D(x, y);
+		this.color = color;
+	
 	}
 	
 //	public GameObject() {

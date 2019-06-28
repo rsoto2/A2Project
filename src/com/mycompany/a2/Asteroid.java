@@ -16,7 +16,7 @@ public class Asteroid extends MovableGameObject implements Movable, IDrawable {
 	final int MIN_SIZE = 6;
 	final int MAX_SIZE = 30;
 	public Asteroid() {
-		super(ColorUtil.BLACK, MAX_SPEED, MAX_DIR);
+		super(ColorUtil.BLACK);
 		setColor(255, 0, 0);
 		this.size = GameObject.rand.nextInt(MAX_SIZE - MIN_SIZE + 1) + MIN_SIZE;
 		this.setSpeed(rand.nextInt(20));
@@ -54,6 +54,7 @@ public void draw(Graphics g, Point pCmpRelPrnt) {
 	// TODO Auto-generated method stub
 	// TODO Auto-generated method stub
 	g.setColor(this.getColor());
+	
 	int xLoc = (int) (pCmpRelPrnt.getX() + (int) this.getLocationX());
 	int yLoc = (int) (pCmpRelPrnt.getY() + (int) this.getLocationY());
 	//int xLoc = (int) ((int) this.getLocationX() + pCmpRelPrnt.getX());// shape location relative

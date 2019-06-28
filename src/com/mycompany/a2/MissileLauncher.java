@@ -6,15 +6,18 @@ import com.codename1.ui.Graphics;
 
 public class MissileLauncher extends MovableGameObject implements ISteerable {
 
-	public MissileLauncher(double x, double y, int speed, int direction)
+	private PlayerShip owner;
+	
+	public MissileLauncher(double x, double y, int speed, int direction, PlayerShip owner)
 	{
-		super(ColorUtil.GRAY, 0, 0);
-		this.getLocationX();
+		super(ColorUtil.GRAY, speed, direction, x, y);
+		//this.getLocationX();
 		this.getLocationY();
+		this.owner = owner;
 		//super.setLocation(x, y);
 		//this.getDirection();
 		//this.setDirection(direction);
-		this.setSpeed(speed);
+		//this.setSpeed(speed);
 		
 		this.setDirection(0);
 		

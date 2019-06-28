@@ -11,26 +11,26 @@ public class PlayerShip extends Ship implements ISteerable {
 
 	private int lives;
 	private int playerScore;
-	
+	private PlayerShip ps;
 	
 	
 	
 	public PlayerShip() 
 	{
 		
-		super(ColorUtil.BLUE, 0, 0);
-	
+		//super(ColorUtil.BLUE, 0, 0, x, y);
+		super(ColorUtil.BLUE, 0, 0, 512, 384);
 		//this.move();
 		//move();
 		//super(ColorUtil.YELLOW, 0, 0);
 		//this.setLocation(0, 0);
 		//this.getDirection();
 		//this.setSpeed(0);
-		setColor(0,150, 40);
+		//setColor(0,150, 40);
 		//setLocation(512, 384);;
 		lives = 3;
 		playerScore = 0;
-		launcher = new MissileLauncher(this.getLocationX(), this.getLocationY(), this.getSpeed(), this.getDirection());
+		launcher = new MissileLauncher(this.getLocationX(), this.getLocationY(), this.getSpeed(), this.getDirection(), ps);
 		 //System.out.println(this.toString());
 		
 	}

@@ -6,10 +6,11 @@ public class NonPlayerShip extends Ship{
 
 	private int size;
 	private NonSteerableMissile ml;
-	
+	private int x;
+	private int y;
 	
 	public NonPlayerShip() {
-		super(ColorUtil.GRAY, 0, 0);
+		super(ColorUtil.GRAY);
 		this.setSpeed(rand.nextInt(16));
 		this.setLocation(rand.nextDouble(), rand.nextDouble());
 		this.setDirection(rand.nextInt(360));

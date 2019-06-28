@@ -7,8 +7,9 @@ public abstract class FixedGameObject extends GameObject {
 	
 	
 public FixedGameObject(int location, int color) {
-		super(location, color);
+		super(color);
 		// TODO Auto-generated constructor stub
+		this.setLocation(30,80);
 	}
 
 

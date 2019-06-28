@@ -11,29 +11,29 @@ private int fuelLevel = 15;
 private Ship owner;
 
 
-public Missile(int color, double x, double y, int speed, int direction, Ship owner) {
+public Missile(PlayerShip owner) {
 	
-	super(ColorUtil.BLACK, speed, direction);
+	super(ColorUtil.BLACK, owner.getSpeed(), owner.getDirection(), owner.getLocationX(), owner.getLocationY());
 	
 	this.owner = owner;
-	this.getLocation();
-	this.setColor(80, 80, 80);
+	//this.getLocation();
+	//this.setColor(80, 80, 80);
 	this.setSpeed(15);
-	this.getDirection();
+	//this.getDirection();
 	decrementFuelLevel();
 	
 	
 }
 
-public Missile(int color, double x, double y, int speed, int direction, NonPlayerShip owner) {
+public Missile(NonPlayerShip owner) {
 	
-	super(ColorUtil.BLACK, speed, direction);
+	super(ColorUtil.BLACK, owner.getSpeed(), owner.getDirection(), owner.getLocationX(), owner.getLocationY());
 	
 	this.owner = owner;
-	this.getLocation();
-	this.setColor(255, 0, 0);
-	this.setSpeed(15);
-	this.getDirection();
+	//this.getLocation();
+	//this.setColor(255, 0, 0);
+	//this.setSpeed(15);
+	//this.getDirection();
 	decrementFuelLevel();
 	
 	

@@ -9,13 +9,18 @@ public class Ship extends MovableGameObject {
 	private int missileCount = 10;
 	//private MissileLauncher missileLauncher;
 	
-	public Ship(int color, int speed, int dir) {
-		super(ColorUtil.BLACK, 0, 0);
-		this.setLocation(512,384);
+	public Ship(int color, int speed, int dir, double x, double y) {
+		super(color, speed, dir, x, y);
+		//this.setLocation(512,384);
 		//this.setColor(50, 50, 50);
 		//this.setDirection(0);
 		//this.setSpeed(0);
 		getMissileCount();
+	}
+	
+	public Ship(int color)
+	{
+		super(color);
 	}
 	
 	public void decrementMissile() {

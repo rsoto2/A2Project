@@ -20,7 +20,7 @@ import java.lang.String;
 import java.util.Observer;
 
 
-public class Game extends Form {
+public class Game extends Form implements Runnable{
 	private GameWorld gw;
 	private MapView mv;
 	private PointsView pv;
@@ -290,6 +290,17 @@ public class Game extends Form {
 //		gw.init();
 //		play();
 //		quit();
+	}
+
+
+
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		gw.tick();
+		
 	}
 	
 

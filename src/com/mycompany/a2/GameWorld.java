@@ -60,7 +60,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 		if(s == null) {
 		s = new PlayerShip();
 		
-		//store.add(s);
+		store.add(s);
 		this.pcc = 1;
 		objects.add(s);
 		System.out.println("A new PS will be created");
@@ -132,7 +132,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 				
 				//Missile ms1 = new Missile(o.getColor(), o.getLocationX(), o.getLocationY(), ((PlayerShip) o).getSpeed(), ((PlayerShip) o).getDirection(), ((PlayerShip) o));
 				
-				objects.add(new Missile(o.getColor(), o.getLocationX(), o.getLocationY(), ((PlayerShip) o).getSpeed(), ((PlayerShip) o).getDirection(), ((PlayerShip) o)));
+				objects.add(new Missile(((PlayerShip) o)));
 
 				
 				System.out.println(getMissileCount() + " missiles left");
@@ -187,7 +187,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 				if(getNPSCount() > 0) { 
 					setNPSCount(getNPSCount() -1);//Dec missile count by 1
 				
-				Missile ms1 = new Missile(o.getColor(), o.getLocationX(), o.getLocationY(), ((NonPlayerShip) o).getSpeed(), ((NonPlayerShip) o).getDirection(), ((NonPlayerShip) o));
+				Missile ms1 = new Missile(((NonPlayerShip) o));
 				
 				objects.add(ms1);
 				
@@ -268,7 +268,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 		
 			if(obj instanceof Missile && ((Missile) obj).getFuel() > 1 ) {
 				iter.remove(i);
-				System.out.println("Missile out of fuel and is removed");
+				
 			
 			}else if(obj instanceof Missile && ((Missile) obj).getFuel() != 1) {
 				((Missile) obj).setFuel(fuel - 1);;
