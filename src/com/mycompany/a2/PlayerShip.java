@@ -7,12 +7,12 @@ import com.codename1.ui.Graphics;
 public class PlayerShip extends Ship implements ISteerable {
 	
 	
-	private MissileLauncher launcher;
-
+	
+	static private MissileLauncher launcher;
 	private int lives;
 	private int playerScore;
 	private PlayerShip ps;
-	
+	private int fuelLevel =  15;
 	
 	
 	public PlayerShip() 
@@ -25,31 +25,32 @@ public class PlayerShip extends Ship implements ISteerable {
 		//super(ColorUtil.YELLOW, 0, 0);
 		//this.setLocation(0, 0);
 		//this.getDirection();
-		//this.setSpeed(0);
+		this.setSpeed(0);
 		//setColor(0,150, 40);
 		//setLocation(512, 384);;
+		this.setMissileCount(10);
 		lives = 3;
 		playerScore = 0;
-		launcher = new MissileLauncher(this.getLocationX(), this.getLocationY(), this.getSpeed(), this.getDirection(), ps);
+		PlayerShip.launcher = new MissileLauncher(this.getLocationX(), this.getLocationY(), this.getSpeed(), 0, ps);
 		 //System.out.println(this.toString());
 		
 	}
 	
 	MissileLauncher getMissileLauncher() 
 	{
-		return launcher;
+		return this.launcher;
 		
 	}
 
-	public void changeLauncherDirection(int amount)
-	{
-		launcher.Steer(amount);
-	}
-	
-	public int getLauncherDirection()
-	{
-		return launcher.getDirection();
-	}
+//	public void changeLauncherDirection(int amount)
+//	{
+//		launcher.Steer(amount);
+//	}
+//	
+//	public int getLauncherDirection()
+//	{
+//		return launcher.getDirection();
+//	}
 	
 //	public int incrementSpeed(int speed) {
 //		return this.getSpeed() - 1;
@@ -126,6 +127,11 @@ public class PlayerShip extends Ship implements ISteerable {
 		}
 		
 		
+	}
+
+	public void decrementFuelLevel() {
+		// TODO Auto-generated method stub
+		this.fuelLevel--;
 	}
 
 	

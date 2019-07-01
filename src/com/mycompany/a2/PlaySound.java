@@ -7,15 +7,17 @@ import com.codename1.media.Media;
 
 public class PlaySound implements Runnable {
 	Media m;
+	private boolean enable;
+	
 	public PlaySound(String fileName)
 	{
 		try {
 			InputStream in = Display.getInstance().getResourceAsStream(getClass(), "/" + fileName);
-			m = MediaManager.createMedia(in, "audio/wav", this);
+			m = MediaManager.createMedia(in, "audio/mp3", this);
 			//m.play();
 		}
 		
-		catch (IOException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 			
 		}
@@ -26,7 +28,9 @@ public class PlaySound implements Runnable {
 	{
 		//PlaySound("frogs.wav");
 		m.play();
+		
 	}
+	
 
 
 	@Override
@@ -35,9 +39,13 @@ public class PlaySound implements Runnable {
 		m.setTime(0);
 		m.play();
 		
+		
 	}
 	
-	
+	public void pause() 
+	{
+		m.pause();
+	}
 	
 	
 

@@ -107,9 +107,7 @@ public class MapView extends Container implements Observer {
 		IIterator it = this.gw.getObjectIterator();
 		while(it.hasNext()) {
 			
-			//GameObject o = (GameObject) it.getNext();
-			
-				//((IDrawable) o).draw(g, pCmpRelPrnt);
+		
 			
 			((GameObject) it.getNext()).draw(g, pCmpRelPrnt);
 			

@@ -56,6 +56,8 @@ public class Game extends Form implements Runnable{
 	private TickCommand tick;
 	private SoundCommand sound;
 	private PlaySound gameSound;
+	private PlaySound fire;
+	
 	
 	
 	
@@ -73,6 +75,7 @@ public class Game extends Form implements Runnable{
 		gw.addObserver(pv);
 		gw.init();
 		//this.show();
+		
 
 		setLayout(new BorderLayout());
 //		this.add(BorderLayout.CENTER, mv);
@@ -158,6 +161,7 @@ public class Game extends Form implements Runnable{
 		missilebutton.getUnselectedStyle().setBgColor(ColorUtil.rgb(0, 150, 150));
 		missilebutton.getAllStyles().setFgColor(ColorUtil.rgb(255, 255, 255));
 		m = new FireMissileCommand(gw);
+		
 		missilebutton.setCommand(m);
 		this.addKeyListener(-90, m);
 		leftButtons.addComponent(missilebutton);
@@ -225,7 +229,8 @@ public class Game extends Form implements Runnable{
 //		this.show();
 		//gw.init();
 		//play();
-		
+		gameSound = new PlaySound("music.mp3");
+		gameSound.play();
 		
 	
 		//toolbar menu
@@ -280,15 +285,17 @@ public class Game extends Form implements Runnable{
 		//gw.addObserver(mv);
 	
 		UITimer time = new UITimer(this);
+		
 		time.schedule(100, true, this);
+		
 		add(BorderLayout.WEST, leftButtons);
 		
 		add(BorderLayout.CENTER, mv);
 		add(BorderLayout.NORTH, pv);
 		run();
 		this.show();
-		//gameSound = new PlaySound("frogs.wav");
-		//gameSound.play();
+//		gameSound = new PlaySound("music.mp3");
+//		gameSound.play();
 	
 //		gw.init();
 //		play();

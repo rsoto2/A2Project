@@ -54,11 +54,11 @@ public abstract class MovableGameObject extends GameObject implements Movable {
 		double ang = Math.PI / 180 * ((90 - this.getDirection()));
 		double directionX = Math.cos(ang) * getSpeed();
 		double directionY = Math.sin(ang) * getSpeed();
-//		double directionX = Math.cos(ang) * getSpeed();
-//		double directionY = Math.sin(ang) * getSpeed();
-		//this.setLocationX((double) (this.getLocationX() + directionX));
-		//this.setLocationY((double) (this.getLocationY() + directionY));
+
+		
 		this.setLocation(this.getLocationX() + directionX, this.getLocationY() + directionY);
+	
+	
 	}
 	
 	

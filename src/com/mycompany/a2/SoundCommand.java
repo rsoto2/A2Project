@@ -10,17 +10,23 @@ public class SoundCommand extends Command {
 	private GameWorld gw;
 	public SoundCommand(GameWorld gw)
 	{
-		super("Sound");
+		super("Sound OFF");
 		this.gw = gw;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if(((CheckBox) e.getComponent()).isSelected()) {
-			gw.setSound(true);
-		}else {
+			
 			gw.setSound(false);
+			
+			
+		}else {
+			gw.setSound(true);
 		}
 	}
+	
+	
+			
 	
 	
 	

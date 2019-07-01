@@ -15,6 +15,7 @@ public class PointsView extends Container implements Observer{
 	private Label elapsedTimeValue;
 	private Label livesValueLabel;
 	private Label soundLabel;
+	private PlaySound end;
 	
 	
 	
@@ -85,6 +86,14 @@ public class PointsView extends Container implements Observer{
 		else {
 			this.soundLabel.setText("OFF");
 		}
+		if(gw.getPlayerLives() == 0)
+		{
+			end = new PlaySound("lose.mp3");
+			end.play();
+			
+		}
+		
+		
 		this.repaint();
 		
 		

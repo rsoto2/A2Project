@@ -6,7 +6,7 @@ import com.codename1.ui.Graphics;
 
 public class Ship extends MovableGameObject {
 
-	private int missileCount = 10;
+	private int missileCount;
 	//private MissileLauncher missileLauncher;
 	
 	public Ship(int color, int speed, int dir, double x, double y) {
@@ -15,7 +15,8 @@ public class Ship extends MovableGameObject {
 		//this.setColor(50, 50, 50);
 		//this.setDirection(0);
 		//this.setSpeed(0);
-		getMissileCount();
+		//getMissileCount();
+		this.missileCount = missileCount;
 	}
 	
 	public Ship(int color)

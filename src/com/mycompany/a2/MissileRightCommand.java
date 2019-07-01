@@ -5,6 +5,7 @@ import com.codename1.ui.events.ActionEvent;
 
 public class MissileRightCommand extends Command {
 private GameWorld gw;
+private PlaySound robot;
 	
 	public MissileRightCommand(GameWorld gw)
 	{
@@ -14,6 +15,10 @@ private GameWorld gw;
 	
 	public void actionPerformed(ActionEvent e)
 	{
+		if(e.getKeyEvent() != -1) {
 		gw.turnPSMLRight();
+		robot = new PlaySound("robot.mp3");
+		robot.play();
+		}
 	}
 }
