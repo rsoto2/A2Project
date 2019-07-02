@@ -24,7 +24,7 @@ public abstract class MovableGameObject extends GameObject implements Movable {
 		super(color);
 		//this.speed = speed;
 		//this.direction = direction;
-		this.speed = new Random().nextInt(21);
+		this.speed = new Random().nextInt(10);
 		this.direction = new Random().nextInt(360);
 	}
 //	public MovableGameObject() {

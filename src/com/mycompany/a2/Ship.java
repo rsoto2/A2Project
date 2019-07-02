@@ -6,8 +6,7 @@ import com.codename1.ui.Graphics;
 
 public class Ship extends MovableGameObject {
 
-	private int missileCount;
-	//private MissileLauncher missileLauncher;
+	
 	
 	public Ship(int color, int speed, int dir, double x, double y) {
 		super(color, speed, dir, x, y);
@@ -16,7 +15,7 @@ public class Ship extends MovableGameObject {
 		//this.setDirection(0);
 		//this.setSpeed(0);
 		//getMissileCount();
-		this.missileCount = missileCount;
+		
 	}
 	
 	public Ship(int color)
@@ -24,33 +23,8 @@ public class Ship extends MovableGameObject {
 		super(color);
 	}
 	
-	public void decrementMissile() {
-		missileCount--;
-	}
 	
-	
-	
-	public void setMissileCount(int mC) {
-		missileCount = mC;
-		
-	}
-	
-	
-//	public void setLauncherDirection(MissileLauncher l)
-//	{
-//		missileLauncher = l;
-//	}
-//	
-//	public int getLauncherDirection()
-//	{
-//		return missileLauncher.getDirection();
-//	}
-	
-	
-	
-	public int getMissileCount() {
-		return this.missileCount;
-	}
+
 
 	@Override
 	public void draw(Graphics g, Point pCmpRelPrnt) {

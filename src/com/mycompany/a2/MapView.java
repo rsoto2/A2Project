@@ -72,12 +72,7 @@ public class MapView extends Container implements Observer {
 		this.height = h;
 	}
 	
-//	public void setP(int width, int height)
-//	{
-//		this.setWidth(width);
-//		this.setHeight(height);
-//	}
-//	
+
 	
 	@Override
 	public void update(Observable observable, Object data) {

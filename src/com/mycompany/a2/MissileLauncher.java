@@ -18,11 +18,6 @@ public class MissileLauncher extends MovableGameObject implements ISteerable, ID
 		//this.getLocationY();
 		this.owner = owner;
 		//super.setLocation(x, y);
-		//this.getDirection();
-		//this.setDirection(direction);
-		//this.setSpeed(speed);
-		
-		//this.setDirection(0);
 		
 		this.amount = 15;
 		
@@ -32,26 +27,7 @@ public class MissileLauncher extends MovableGameObject implements ISteerable, ID
 	public String toString() {
 		return "Player MissileLauncher: " + getDirection();
 	}
-	
-//	public int getMissileLauncherDirection() {
-//		return getDirection();
-//	}
-//	
-//	public void setMissileLauncherDirection(int amount) {
-//		setDirection(amount);
-//	}
 
-//	@Override
-//	public void turnLeft() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void turnRight() {
-//		// TODO Auto-generated method stub
-//		
-//	}
 	
 	public void setOwner(PlayerShip ps)
 	{
@@ -68,16 +44,6 @@ public class MissileLauncher extends MovableGameObject implements ISteerable, ID
 		return this.direction;
 	}
 	
- 
-	
-	
-//	@Override
-//	public void Steer(int amount) {
-//		// TODO Auto-generated method stub
-//		this.setDirection((this.getDirection()) + amount /360);
-//		
-//		
-//	}
 	
 	public void Steer(int amount) {
 	if(getDirection() == 0 && amount < 0) 

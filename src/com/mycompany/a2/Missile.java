@@ -16,12 +16,9 @@ public Missile(PlayerShip owner) {
 	super(ColorUtil.BLACK, owner.getSpeed(), owner.getMissileLauncher().getDirection(), owner.getMissileLauncher().getLocationX(), owner.getMissileLauncher().getLocationY());
 	
 	this.owner = owner;
-	//this.getLocation();
-	//this.setColor(80, 80, 80);
 	this.setSpeed(15);
-	//this.getDirection();
 	owner.decrementFuelLevel();
-	System.out.println("Owner ml dir  and missile dir : " + owner.getDirection() +  "   :   " + this.getDirection());
+
 
 	
 	
@@ -33,10 +30,7 @@ public Missile(NonPlayerShip owner) {
 	
 	this.owner = owner;
 	this.setSpeed(15);
-	//this.getLocation();
-	//this.setColor(255, 0, 0);
-	//this.setSpeed(15);
-	//this.getDirection();
+
 	owner.decrementFuelLevel();
 	
 	
@@ -60,7 +54,7 @@ public int getFuel() {
 public int decrementFuelLevel() {
 	
 	return fuelLevel--;
-	//return this.getFuel() - 1;
+	
 }
 
 

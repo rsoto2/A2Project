@@ -114,13 +114,13 @@ public class GameWorld extends Observable  implements IGameWorld{
 				if(getMissileCount() > 0) { 
 					setMCount(getMissileCount() -1);
 				
-				//Missile ms1 = new Missile(o.getColor(), o.getLocationX(), o.getLocationY(), ((PlayerShip) o).getSpeed(), ((PlayerShip) o).getDirection(), ((PlayerShip) o));
 				
 				objects.add(new Missile(((PlayerShip) o)));
 
 			
 				System.out.println(getMissileCount() + " missiles left");
 				System.out.println("PlayerShip has fired a Missile!");
+				((PlayerShip) o).decrementFuelLevel();
 				
 				
 				this.setChanged();
@@ -223,7 +223,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 			GameObject o = (GameObject) i.getNext();
 			if(o instanceof PlayerShip)
 			{
-				((PlayerShip) o).reset();
+				((PlayerShip) o).setLocation(512, 384);
 				((PlayerShip) o).setSpeed(0);
 				this.setChanged();
 				this.notifyObservers(new GameWorldProxy(this));
@@ -513,7 +513,7 @@ public class GameWorld extends Observable  implements IGameWorld{
 		
  }
 	
-	public void removeMissileAndNPS() throws IllegalArgumentException //PS missile destorys NPS
+	public void removeMissileAndNPS() throws IllegalArgumentException 
     {   
 		
 		if(a == 1 && non > 0) {
@@ -534,7 +534,7 @@ public class GameWorld extends Observable  implements IGameWorld{
             			if(o2 instanceof NonPlayerShip) {
                     		it2.remove(i2);
                     		non--;
-                    		System.out.println("NonPlayerShip was destroyed by PlayerShip Missile");
+                    		System.out.println("NonPlayerShip destroyed by Missile");
                     		this.setChanged();
                     		this.notifyObservers(new GameWorldProxy(this));
                     		return;
@@ -741,8 +741,8 @@ public class GameWorld extends Observable  implements IGameWorld{
 			Object obj = iter.getNext();
 			if(obj instanceof PlayerShip) {
 				System.out.println( "Current Score=" + this.playerScore +
-						" Number of missile in ship=" + ((Ship) obj).getMissileCount() + 
-						" Current elapased time=" + this.clock + 
+						" # of missile in ship=" + getMissileCount() + 
+						" elapased time=" + this.clock + 
 						" Number of lives=" + ((PlayerShip) obj).getLives());
 			}
 		}

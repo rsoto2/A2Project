@@ -30,6 +30,7 @@ public class SpaceCollection implements ICollection {
 	{
 		private Vector<GameObject> theCollection; 
 		private int currElementIndex;
+
 		
 		public SpaceVectorIterator(Vector<GameObject> theCollection) {
 			this.currElementIndex = 0;
@@ -40,12 +41,8 @@ public class SpaceCollection implements ICollection {
 		@Override
 		public boolean hasNext() {
 			// TODO Auto-generated method stub
-//			if(theCollection.size() <= 0)
-//				return false;
-//			if(currElementIndex == theCollection.size() - 1)
-//				return false;
-//			return true;
-		 if(currElementIndex >= theCollection.size() || theCollection.get(currElementIndex) == null) 
+
+		 if(currElementIndex >= theCollection.size()) 
 			 return false; 
 		 else 
 			 return true;
@@ -54,8 +51,7 @@ public class SpaceCollection implements ICollection {
 		@Override
 		public GameObject getNext() {
 			// TODO Auto-generated method stub
-//			currElementIndex++;
-//			return  theCollection.elementAt(currElementIndex);
+
 		GameObject o = theCollection.get(currElementIndex);
 		currElementIndex++;
 		return o;

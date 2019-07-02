@@ -28,7 +28,7 @@ public class PlayerShip extends Ship implements ISteerable {
 		this.setSpeed(0);
 		//setColor(0,150, 40);
 		//setLocation(512, 384);;
-		this.setMissileCount(10);
+	
 		lives = 3;
 		playerScore = 0;
 		PlayerShip.launcher = new MissileLauncher(this.getLocationX(), this.getLocationY(), this.getSpeed(), 0, ps);
@@ -42,28 +42,7 @@ public class PlayerShip extends Ship implements ISteerable {
 		
 	}
 
-//	public void changeLauncherDirection(int amount)
-//	{
-//		launcher.Steer(amount);
-//	}
-//	
-//	public int getLauncherDirection()
-//	{
-//		return launcher.getDirection();
-//	}
-	
-//	public int incrementSpeed(int speed) {
-//		return this.getSpeed() - 1;
-//	}
-//	
-//	
-//	
-//	public int decreaseSpeed(int speed) {
-//		return this.getSpeed() - 1;
-//	}
-	
-	
-	public void setLives(int l) {
+ void setLives(int l) {
 		lives = l;
 		}
 	
@@ -73,22 +52,13 @@ public class PlayerShip extends Ship implements ISteerable {
 	
 	
 	
-//	public int getLauncherDirection()
-//	{
-//		return launcher.getDirection();
-//	}
-	
+
 	public void setPlayerScore(int s) {
 		playerScore = s;
 	}
 	
 	public int getPlayerScore() {
 		return playerScore;
-	}
-	
-	public void reset() 
-	{
-		this.setLocation(512, 384);
 	}
 	
 	public void incSpeed()
@@ -134,14 +104,5 @@ public class PlayerShip extends Ship implements ISteerable {
 		this.fuelLevel--;
 	}
 
-	
-//	public void draw(Graphics g, Point origin)
-//	{
-//		int x = (int)this.getX() + (int)origin.getX();
-//		int y = (int) this.getY() + (int) origin.getY();
-//		g.setColor(color);
-//	}
-
-	
 	
 }
